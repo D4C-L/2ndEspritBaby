@@ -3,6 +3,7 @@ package Actors;
 import Management.IGestion;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Societe implements IGestion<Employee> {
@@ -44,7 +45,7 @@ public class Societe implements IGestion<Employee> {
         Employee swish;
         for (int i = 0; i < employees.size() - 1; i++) {
             for (int j = i + 1; j < employees.size(); j++) {
-                if (employees.get(i).getId() > employees.get(j).getId()) {
+                if (employees.get(i).compareTo(employees.get(j))>0) {
                     swish = employees.get(i);
                     employees.set(i, employees.get(j));
                     employees.set(j, swish);
@@ -55,6 +56,8 @@ public class Societe implements IGestion<Employee> {
     @Override
     public void trierEmployeParNomDepartementEtGrade(){
         Employee swish;
+        NameComparator ncomp = new NameComparator();
+        DepartmentComparator dcomp = new DepartmentComparator();
         for (int i = 0; i < employees.size() - 1; i++) {
             for (int j = i + 1; j < employees.size(); j++) {
                 if (employees.get(i).getGrade()>employees.get(j).getGrade()) {
@@ -66,7 +69,7 @@ public class Societe implements IGestion<Employee> {
         }
         for (int i = 0; i < employees.size() - 1; i++) {
             for (int j = i + 1; j < employees.size(); j++) {
-                if (employees.get(i).getNomDep().compareTo(employees.get(j).getNomDep())>0) {
+                if (dcomp.compare(employees.get(i), employees.get(j))>0) {
                     swish = employees.get(i);
                     employees.set(i, employees.get(j));
                     employees.set(j, swish);
@@ -75,7 +78,7 @@ public class Societe implements IGestion<Employee> {
         }
         for (int i = 0; i < employees.size() - 1; i++) {
             for (int j = i + 1; j < employees.size(); j++) {
-                if (employees.get(i).getNom().compareTo(employees.get(j).getNom())>0) {
+                if (ncomp.compare(employees.get(i), employees.get(j))>0) {
                     swish = employees.get(i);
                     employees.set(i, employees.get(j));
                     employees.set(j, swish);
@@ -95,5 +98,19 @@ public class Societe implements IGestion<Employee> {
     public static void display(List<Employee> emps){
         for (Employee employee : emps)
             System.out.println(employee);
+    }
+}
+
+class NameComparator implements Comparator<Employee> {
+    @Override
+    public int compare(Employee e1, Employee e2) {
+        return  e1.getNom().compareTo(e2.getNom());
+    }
+}
+
+class DepartmentComparator implements Comparator<Employee> {
+    @Override
+    public int compare(Employee e1, Employee e2) {
+        return  e1.getNomDep().compareTo(e2.getNomDep());
     }
 }

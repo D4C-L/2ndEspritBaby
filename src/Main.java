@@ -8,7 +8,7 @@ public class Main {
         s.ajouterEmployee(employee);
         s.ajouterEmployee(new Employee(1, "xavier", "xmen", "lowel", 16));
         s.ajouterEmployee(new Employee(2, "Robbin", "DaHood", "theni", 17));
-        s.ajouterEmployee(new Employee(4, "Anas", "Chammakhi", "theni", 1));
+        s.ajouterEmployee(new Employee(4, "Anes", "Chammakhi", "theni", 1));
         s.ajouterEmployee(new Employee(5, "Funny", "Valentine", "lowel", 20));
         System.out.println("-----------------------------------------------\nRecherche:");
         if(s.rechercherEmployee("ManOF"))

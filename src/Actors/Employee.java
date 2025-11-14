@@ -1,6 +1,6 @@
 package Actors;
 
-public class Employee {
+public class Employee implements Comparable<Employee> {
     int id;
     String nom;
     String prenom;
@@ -29,4 +29,8 @@ public class Employee {
 
     public String toString(){return "id: "+id+"\nNom: "+nom + "\nPrenom: " + prenom + "\nGrade: " + grade + "\nNom de Departement: " + nomDep;}
 
+    @Override
+    public int compareTo(Employee o) {
+        return this.id-o.id;
+    }
 }
